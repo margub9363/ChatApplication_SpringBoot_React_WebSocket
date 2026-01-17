@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,7 @@ public class RoomController {
 
 
     //    get room : join
-    @GetMapping("/")
+    @GetMapping("/{roomId}")
     public ResponseEntity<?> joinRoom(@PathVariable String roomId) {
         Room room = roomRepository.findByRoomId(roomId);
         if (room == null) {
@@ -46,7 +47,8 @@ public class RoomController {
 
     //    get messages of room
     @GetMapping("/{roomId}/messages")
-    public ResponseEntity<List<Message>> getMessages(
+//    public ResponseEntity<List<Message>> getMessages(
+    public ResponseEntity<?> getMessages(
             @PathVariable String roomId,
             @RequestParam(value = "page", defaultValue = "0", required = false) int page,
             @RequestParam(value = "size", defaultValue = "20", required = false) int size) {
