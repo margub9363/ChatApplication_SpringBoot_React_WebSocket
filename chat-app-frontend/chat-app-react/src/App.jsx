@@ -1,13 +1,11 @@
 import toast from "react-hot-toast";
+import JoinCreateChat from "./components/JoinCreateChat";
 
 function App() {
   return (
     <>
       <div>
-        <h1>This is main page</h1>
-        <button onClick={() => toast.success("This is toast message")}>
-          Click me
-        </button>
+        <JoinCreateChat />
       </div>
     </>
   );
