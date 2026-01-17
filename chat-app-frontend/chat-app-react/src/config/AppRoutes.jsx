@@ -7,6 +7,8 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/chat" element={<h1>this is a chat pages</h1>} />
+      <Route path="/about" element={<h1>this is about page</h1>} />
+      <Route path="/*" element={<h1>404 Not Found</h1>} />
     </Routes>
   );
 };
