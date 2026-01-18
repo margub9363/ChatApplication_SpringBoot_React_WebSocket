@@ -30,10 +30,16 @@ const JoinCreateChat = () => {
       try {
         const response = await createRoomApi(detail.roomId);
         console.log(response);
+        toast.success("Room Created Successfully");
+        //join the room
         joinChat();
       } catch (error) {
-        console.log(error);
-        console.log("Error in Creating Room");
+        if ((error.code = 400)) {
+          toast.error("Room Already Exist");
+        } else {
+          console.log(error);
+          console.log("Error in Creating Room");
+        }
       }
     }
   }
