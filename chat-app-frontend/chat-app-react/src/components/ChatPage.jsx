@@ -49,7 +49,10 @@ const ChatPage = () => {
 
       <main className=" px-10 py-20 border w-2/3 dark:bg-slate-600 mx-auto h-screen overflow-auto">
         {messages.map((message, index) => (
-          <div key={index} className="flex justify-start">
+          <div
+            key={index}
+            className={`flex ${message.sender === currentUser ? "justify-end" : "justijustify-start"} `}
+          >
             <div className="my-2 bg-blue-600 p-2 rounded max-w-xs">
               <div className="flex flex-row">
                 <img className="h-10 w-10 gap-2" src={Tannu} alt="" />
