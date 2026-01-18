@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import chatIcon from "../assets/chat.png";
+import toast from "react-hot-toast";
+import { createRoom as createRoomApi } from "../services/RoomService";
 
 const JoinCreateChat = () => {
   const [detail, setDetails] = useState({
@@ -12,11 +14,37 @@ const JoinCreateChat = () => {
       ...detail,
       [event.target.name]: event.target.value,
     });
-
-    function joinChat() {}
   }
 
-  function createRoom() {}
+  function joinChat() {
+    if (validateForm()) {
+      // join chat
+    }
+  }
+
+  async function createRoom() {
+    console.log("**********");
+    if (validateForm()) {
+      // create room
+      // call api to create room on backend
+      try {
+        const response = await createRoomApi(detail.roomId);
+        console.log(response);
+        joinChat();
+      } catch (error) {
+        console.log(error);
+        console.log("Error in Creating Room");
+      }
+    }
+  }
+
+  function validateForm() {
+    if (detail.roomId === "" || detail.userName === "") {
+      toast.error("Invalid Inputs");
+      return false;
+    }
+    return true;
+  }
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="p-10 dark:border-gray-700 w-full flex flex-col gap-5 max-w-md rounded dark:bg-gray-900 shadow">
@@ -55,10 +83,16 @@ const JoinCreateChat = () => {
           />
         </div>
         <div className="flex justify-center gap-2 mt-4">
-          <button className="px-3 py-2 dark:bg-blue-500 hover:dark:bg-blue-800 rounded-full">
+          <button
+            onClick={joinChat}
+            className="px-3 py-2 dark:bg-blue-500 hover:dark:bg-blue-800 rounded-full"
+          >
             Join Room
           </button>
-          <button className="px-3 py-2 dark:bg-orange-500 hover:dark:bg-orange-800 rounded-full">
+          <button
+            onClick={createRoom}
+            className="px-3 py-2 dark:bg-orange-500 hover:dark:bg-orange-800 rounded-full"
+          >
             Create Room
           </button>
         </div>

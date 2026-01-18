@@ -6,7 +6,7 @@ import "./index.css"; // MUST be here
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <Toaster position="bottom" />
+    <Toaster position="top-center" />
     <AppRoutes />
   </BrowserRouter>,
 );
