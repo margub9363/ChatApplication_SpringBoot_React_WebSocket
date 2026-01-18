@@ -57,6 +57,12 @@ const ChatPage = () => {
     });
   }, [roomId]);
 
+  const sendMessage = async () => {
+    if (stompClient && connected && input.trim()) {
+      console.log(input);
+    }
+  };
+
   return (
     <div className="">
       <header className="dark:border-gray-700 fixed h-20 w-full shadow dark:bg-gray-900 py-5 flex justify-around item-center">
@@ -100,6 +106,10 @@ const ChatPage = () => {
       <div className="fixed bottom-4 w-full h-16">
         <div className="h-full pr-10 gap-4 flex items-center justify-between w-1/2 mx-auto dark:bg-gray-900 rounded-full">
           <input
+            value={input}
+            onChange={(e) => {
+              setInput(e.target.value);
+            }}
             type="text"
             placeholder="Type your message here..."
             className="dark:border-gray-600 w-full dark:bg-gray-800 px-5 py-2 rounded-full h-full focus:outline-none"
@@ -108,7 +118,10 @@ const ChatPage = () => {
             <button className="dark:bg-purple-600 h-10 w-10 flex justify-center items-center rounded-full">
               <MdAttachFile size={20} />
             </button>
-            <button className="dark:bg-green-600 h-10 w-10 flex justify-center items-center rounded-full">
+            <button
+              onClick={sendMessage}
+              className="dark:bg-green-600 h-10 w-10 flex justify-center items-center rounded-full"
+            >
               <MdSend size={20} />
             </button>
           </div>
