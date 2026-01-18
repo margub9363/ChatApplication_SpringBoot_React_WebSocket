@@ -22,6 +22,41 @@ const ChatPage = () => {
         </div>
       </header>
 
+      <main className="py-20 border w-2/3 dark:bg-slate-600 mx-auto h-screen overflow-auto">
+        <div className="message_container">
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1> <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+          <h1>hii</h1>
+        </div>
+      </main>
       <div className="fixed bottom-4 w-full h-16">
         <div className="h-full pr-10 gap-4 flex items-center justify-between w-1/2 mx-auto dark:bg-gray-900 rounded-full">
           <input
