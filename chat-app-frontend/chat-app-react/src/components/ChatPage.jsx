@@ -17,20 +17,7 @@ const ChatPage = () => {
       navigate("/");
     }
   }, [connected, currentUser, roomId]);
-  const [messages, setMessages] = useState([
-    {
-      content: "hello",
-      sender: "Rahman",
-    },
-    {
-      content: "hii",
-      sender: "Tannu",
-    },
-    {
-      content: "hey",
-      sender: "Margub",
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
   const chatBoxRef = useRef(null);
@@ -44,6 +31,7 @@ const ChatPage = () => {
       try {
         const messages = await getMessages(roomId);
         console.log(messages);
+        setMessages(messages);
       } catch (error) {}
     }
     loadMessages();
