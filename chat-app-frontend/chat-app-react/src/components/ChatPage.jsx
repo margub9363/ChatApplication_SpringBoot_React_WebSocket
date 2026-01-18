@@ -3,6 +3,10 @@ import { MdAttachFile, MdSend } from "react-icons/md";
 import Tannu from "../assets/Tannu.png";
 import useChatContext from "../context/ChatContext";
 import { useNavigate } from "react-router-dom";
+import SockJS from "sockjs-client";
+import { baseURL } from "../config/AxiosHelper";
+import { Stomp } from "@stomp/stompjs";
+import toast from "react-hot-toast";
 
 const ChatPage = () => {
   const { roomId, currentUser, connected } = useChatContext();
@@ -30,6 +34,29 @@ const ChatPage = () => {
   const inputRef = useRef(null);
   const chatBoxRef = useRef(null);
   const [stompClient, setStompClient] = useState(null);
+
+  // page init
+  // laod messages
+
+  //   stompClient ko init krna hogaaa
+  // subscribe
+  useEffect(() => {
+    const connectWebSocket = () => {};
+    // sockJs
+    const sock = new SockJS(`${baseURL}/chat`);
+    const client = Stomp.over(sock);
+    client.connect({}, () => {
+      setStompClient(client);
+      toast.success("connected");
+      client.subscribe(`/topic/room/${roomId}`, (message) => {
+        console.log(message);
+        const newMessage = JSON.parse(message.body);
+        setMessages((prev) => [...prev, newMessage]);
+        // rest of the work after success receiving the message
+      });
+    });
+  }, [roomId]);
+
   return (
     <div className="">
       <header className="dark:border-gray-700 fixed h-20 w-full shadow dark:bg-gray-900 py-5 flex justify-around item-center">
