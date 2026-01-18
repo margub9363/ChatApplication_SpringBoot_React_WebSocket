@@ -7,6 +7,7 @@ import SockJS from "sockjs-client";
 import { baseURL } from "../config/AxiosHelper";
 import { Stomp } from "@stomp/stompjs";
 import toast from "react-hot-toast";
+import { getMessages } from "../services/RoomService";
 
 const ChatPage = () => {
   const { roomId, currentUser, connected } = useChatContext();
@@ -38,6 +39,16 @@ const ChatPage = () => {
   // page init
   // laod messages
 
+  useEffect(() => {
+    async function loadMessages() {
+      try {
+        const messages = await getMessages(roomId);
+        console.log(messages);
+      } catch (error) {}
+    }
+    loadMessages();
+  }, []);
+
   //   stompClient ko init krna hogaaa
   // subscribe
   useEffect(() => {
@@ -60,6 +71,18 @@ const ChatPage = () => {
   const sendMessage = async () => {
     if (stompClient && connected && input.trim()) {
       console.log(input);
+      const message = {
+        sender: currentUser,
+        content: input,
+        roomId: roomId,
+      };
+
+      stompClient.send(
+        `/app/sendMessage/${roomId}`,
+        {},
+        JSON.stringify(message),
+      );
+      setInput("");
     }
   };
 
