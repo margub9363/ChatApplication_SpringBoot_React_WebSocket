@@ -1,8 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdAttachFile, MdSend } from "react-icons/md";
 import Tannu from "../assets/Tannu.png";
+import useChatContext from "../context/ChatContext";
+import { useNavigate } from "react-router-dom";
 
 const ChatPage = () => {
+  const { roomId, currentUser, connected } = useChatContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!connected) {
+      navigate("/");
+    }
+  }, [connected, currentUser, roomId]);
   const [messages, setMessages] = useState([
     {
       content: "hello",
@@ -21,8 +30,6 @@ const ChatPage = () => {
   const inputRef = useRef(null);
   const chatBoxRef = useRef(null);
   const [stompClient, setStompClient] = useState(null);
-  const [roomId, setRoomId] = useState("");
-  const [currentUser] = useState("Rahman");
   return (
     <div className="">
       <header className="dark:border-gray-700 fixed h-20 w-full shadow dark:bg-gray-900 py-5 flex justify-around item-center">
