@@ -16,10 +16,6 @@ const ChatPage = () => {
       content: "hey",
       sender: "Margub",
     },
-    {
-      content: "yupp",
-      sender: "Rocky",
-    },
   ]);
   const [input, setInput] = useState("");
   const inputRef = useRef(null);
@@ -53,8 +49,10 @@ const ChatPage = () => {
             key={index}
             className={`flex ${message.sender === currentUser ? "justify-end" : "justijustify-start"} `}
           >
-            <div className="my-2 bg-blue-600 p-2 rounded max-w-xs">
-              <div className="flex flex-row">
+            <div
+              className={`my-2 ${message.sender === currentUser ? "bg-green-800" : "bg-gray-800"} sbg-blue-600 p-2 rounded max-w-xs`}
+            >
+              <div className="flex flex-row gap-2">
                 <img className="h-10 w-10 gap-2" src={Tannu} alt="" />
                 <div className="flex flex-col gap-1">
                   <p className="text-sm font-bold">{message.sender}</p>
