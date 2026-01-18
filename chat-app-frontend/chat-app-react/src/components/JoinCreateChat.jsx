@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import chatIcon from "../assets/chat.png";
 
 const JoinCreateChat = () => {
+  const [detail, setDetails] = useState({
+    roomId: "",
+    userName: "",
+  });
+
+  function handleFormInputChange(event) {
+    setDetails({
+      ...detail,
+      [event.target.name]: event.target.value,
+    });
+
+    function joinChat() {}
+  }
+
+  function createRoom() {}
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="p-10 dark:border-gray-700 w-full flex flex-col gap-5 max-w-md rounded dark:bg-gray-900 shadow">
@@ -16,6 +31,10 @@ const JoinCreateChat = () => {
             Your Name
           </label>
           <input
+            onChange={handleFormInputChange}
+            value={detail.userName}
+            name="userName"
+            placeholder="Enter the name"
             type="text"
             id="name"
             className="w-full dark:bg-gray-600 px-4 py-2 border dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -26,6 +45,10 @@ const JoinCreateChat = () => {
             Room ID / New Room ID
           </label>
           <input
+            name="roomId"
+            onChange={handleFormInputChange}
+            value={detail.roomId}
+            placeholder="Enter RoomId"
             type="text"
             id="name"
             className="w-full dark:bg-gray-600 px-4 py-2 border dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
